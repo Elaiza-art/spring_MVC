@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список покупок</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 600px; margin: 2rem auto; padding: 0 1rem; }
+        input, button { padding: 8px 12px; margin: 4px 0; font-size: 1rem; }
+        input { flex: 1; min-width: 200px; }
+        form { display: flex; gap: 8px; margin-bottom: 1.5rem; }
+        ul { list-style: none; padding: 0; }
+        li { display: flex; justify-content: space-between; align-items: center;
+             padding: 10px; border-bottom: 1px solid #eee; }
+        li.purchased span { text-decoration: line-through; color: #888; }
+        .actions { display: flex; gap: 6px; }
+        button.action { cursor: pointer; border: none; border-radius: 4px; color: white; }
+        button.toggle-btn { background: #007bff; }
+        button.delete-btn { background: #dc3545; }
+        button:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+<h1>Список покупок</h1>
+
+<form id="addForm">
+    <input type="text" id="itemName" placeholder="Название товара" required autocomplete="off">
+    <button type="submit">Добавить</button>
+</form>
+
+<ul id="itemList">
+    <li style="color:gray">Загрузка...</li>
+</ul>
+
+<script src="/app.js" defer></script>
+</body>
+</html>
