@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('addForm');
     const input = document.getElementById('itemName');
 
-    // 📋 Загрузка и отображение списка
     async function loadItems() {
         try {
             const res = await fetch(API);
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 🎨 Рендеринг списка (вынесено отдельно для чистоты)
     function renderList(items) {
         listEl.innerHTML = '';
         if (items.length === 0) {
@@ -27,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         items.forEach(item => {
             const li = document.createElement('li');
             li.className = item.purchased ? 'purchased' : '';
-            li.dataset.id = item.id; // удобно для тестов и отладки
+            li.dataset.id = item.id;
             li.innerHTML = `
                 <span>${escapeHtml(item.name)}</span>
                 <div>
@@ -41,14 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 🔐 Защита от XSS: экранирование пользовательского ввода
     function escapeHtml(str) {
         const div = document.createElement('div');
         div.textContent = str;
         return div.innerHTML;
     }
 
-    // ➕ Обработка добавления
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const name = input.value.trim();
@@ -62,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             if (res.ok) {
                 input.value = '';
-                await loadItems(); // перезагружаем список
+                await loadItems();
             } else {
                 alert('Не удалось добавить товар');
             }
@@ -71,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 🗑️ Делегирование событий для кнопок (эффективнее, чем навешивать на каждую)
     listEl.addEventListener('click', async (e) => {
         const btn = e.target.closest('button');
         if (!btn) return;
@@ -92,6 +87,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 🚀 Инициализация
     loadItems();
 });

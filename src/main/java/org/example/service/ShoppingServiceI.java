@@ -13,7 +13,7 @@ public interface ShoppingServiceI {
     List<Item> getAll();
 
     /**
-     * Создает нового клиента
+     * Создает новый элемент
      * @param name - название элемента
      * @return - объект элемента с заданным ID
      */
@@ -26,7 +26,7 @@ public interface ShoppingServiceI {
     Item markPurchased(Long id);
 
     /**
-     * Удаляет клиента с заданным ID
+     * Удаляет элемент с заданным ID
      * @param id - id элемента, которого нужно удалить
      */
     void delete(Long id);
