@@ -34,12 +34,10 @@ public class ShoppingListService implements ShoppingServiceI {
 
     @Override
     public Item markPurchased(Long id) {
-        Item item = repository.findById(id);
-        if (item != null) {
+        return repository.findById(id).map(item -> {
             item.setPurchased(!item.isPurchased());
             return repository.save(item);
-        }
-        return null;
+        }).orElse(null);
     }
 
 }

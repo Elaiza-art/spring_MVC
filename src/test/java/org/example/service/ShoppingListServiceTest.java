@@ -8,6 +8,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 import static org.mockito.Mockito.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -40,7 +42,7 @@ public class ShoppingListServiceTest {
     void markPurchased_checkToggleItemStatus(){
 
         Item item = new Item(2L, "Носки", false);
-        when(repository.findById(2L)).thenReturn(item);
+        when(repository.findById(2L)).thenReturn(Optional.of(item));
 
         Item updItem = new Item(2L, "Носки", true);
         when(repository.save(any(Item.class))).thenReturn(updItem);
